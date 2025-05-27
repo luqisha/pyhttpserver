@@ -15,7 +15,16 @@ def main():
             if request:
                 print(f"Received request:\n{request}")
 
-            response = "HTTP/1.1 200 OK\r\n\r\n"
+                method, target = request.splitlines().split()[0:2]
+
+                if method == "GET" and target == "/":
+                    response = "HTTP/1.1 200 OK\r\n\r\n"
+                else:
+                    response = "HTTP/1.1 404 Not Found\r\n\r\n"
+
+            else:
+                response = "HTTP/1.1 400 Bad Request\r\n\r\n"
+                print("No request received.")
 
             client_connection.sendall(response.encode('utf-8'))
 
