@@ -15,7 +15,7 @@ def main():
             if request:
                 print(f"Received request:\n{request}")
 
-                method, target = request.splitlines().split()[0:2]
+                method, target = request.splitlines()[0].split()[0:2]
 
                 if method == "GET" and target == "/":
                     response = "HTTP/1.1 200 OK\r\n\r\n"
